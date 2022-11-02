@@ -21,6 +21,21 @@ return require('packer').startup(function(use)
   -- Statusline
   use "nvim-lualine/lualine.nvim"
 
+  -- Reusable lua functions library
+  use "nvim-lua/plenary.nvim"
+
+  -- Telescope
+  use {
+    'nvim-telescope/telescope.nvim',
+    tag = '0.1.0',
+    requires = { {'nvim-lua/plenary.nvim'} },
+    config = function()
+    end,
+  }
+  use "nvim-telescope/telescope-file-browser.nvim"
+
+  -- Treesitter
+	use { "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
