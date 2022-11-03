@@ -25,7 +25,7 @@ telescope.setup {
     },
     live_grep = {
       theme = "dropdown",
-    }
+    },
   },
   extensions = {
     file_browser = {
@@ -41,14 +41,20 @@ telescope.setup {
           ["n"] = fb.actions.create,
         },
       },
+    },
+    frecency = {
+      ignore_patterns = {"*.git/*", "*/tmp/*"},
     }
   }
 }
 
-telescope.load_extension "file_browser"
 
-vim.keymap.set("n", "<Leader>ff", builtin.find_files, { noremap = true, silent = true })
-vim.keymap.set("n", "<Leader>fg", builtin.live_grep, { noremap = true, silent = true })
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set("n", "<Leader>ff", builtin.find_files, opts)
+vim.keymap.set("n", "<Leader>fg", builtin.live_grep, opts)
+
+telescope.load_extension "file_browser"
 vim.keymap.set("n", "<Leader>fb", function()
   fb.file_browser {
     path = "%:p:h",
@@ -60,4 +66,9 @@ vim.keymap.set("n", "<Leader>fb", function()
     previewer = false,
     initial_mode = "normal",
   }
-end, { noremap = true, silent = true })
+end, opts)
+
+telescope.load_extension "frecency"
+vim.keymap.set("n", "<Leader>fr", function()
+  telescope.extensions.frecency.frecency()
+end, opts)
