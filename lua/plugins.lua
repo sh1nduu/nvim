@@ -53,6 +53,18 @@ return require('packer').startup(function(use)
     "hrsh7th/cmp-cmdline",
   }
 
+  -- Sidebar
+  use "sidebar-nvim/sidebar.nvim"
+
+  -- Startup window
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function ()
+        require'alpha'.setup(require'alpha.themes.startify'.config)
+    end
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
