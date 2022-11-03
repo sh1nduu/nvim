@@ -31,7 +31,7 @@ telescope.setup {
     file_browser = {
       theme = "dropdown",
       hijack_netrw = true,
-      dir_icon = "D|",
+      dir_icon = "",
       mappings = {
         ["i"] = {
           -- custom insert mode mappings

@@ -29,13 +29,25 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim',
     tag = '0.1.0',
     requires = { {'nvim-lua/plenary.nvim'} },
-    config = function()
-    end,
   }
   use "nvim-telescope/telescope-file-browser.nvim"
 
   -- Treesitter
 	use { "nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" } }
+
+  -- LSP & Completion
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/vim-vsnip",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lsp-signature-help",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
