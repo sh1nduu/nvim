@@ -65,6 +65,24 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- Cursor move support
+  use 'unblevable/quick-scope'
+
+  -- File tree
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
+    },
+    config = function ()
+      -- This option must be set on this time
+      vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+    end
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
