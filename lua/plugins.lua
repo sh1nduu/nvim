@@ -66,7 +66,25 @@ return require('packer').startup(function(use)
   }
 
   -- Cursor move support
-  use 'unblevable/quick-scope'
+  use {
+    'unblevable/quick-scope',
+    config = function ()
+      vim.cmd("let g:qs_enable=1", false)
+      vim.cmd("let g:qs_max_chars=80", false)
+      vim.cmd("let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']", false)
+      vim.cmd("let g:qs_lazy_highlight = 1", false)
+      vim.cmd("nmap <Leader>h <plug>(QuickScopeToggle)", false)
+    end
+  }
+  use {
+    'phaazon/hop.nvim',
+    branch = 'v2', -- optional but strongly recommended
+    config = function()
+      -- you can configure Hop the way you like here; see :h hop-config
+      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      vim.keymap.set('n', '<Leader>hw', ":HopWord<Enter>" ,{ silent = true, noremap = true })
+    end
+  }
 
   -- File tree
   use {
@@ -82,6 +100,41 @@ return require('packer').startup(function(use)
       vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
     end
   }
+
+  -- Comment feature
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+
+  -- autopair
+  use {
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup()
+    end,
+  }
+
+  -- autotag
+  use {
+    "windwp/nvim-ts-autotag",
+    config = function ()
+      require('nvim-treesitter.configs').setup {
+        autotag = {
+          enable = true,
+        }
+      }
+    end
+  }
+
+  -- Test
+  use "klen/nvim-test"
+
+  -- Git
+  use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+  use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
