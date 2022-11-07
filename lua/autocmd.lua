@@ -46,3 +46,14 @@ autocmd({ "ColorScheme" }, {
   pattern = { "*" },
   command = "highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline",
 })
+
+-- Show cursor line in only active pane
+autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+  pattern = { "*" },
+  command = "setlocal cursorline",
+})
+autocmd({ "WinLeave" }, {
+  pattern = { "*" },
+  command = "setlocal nocursorline",
+})
+
