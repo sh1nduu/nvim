@@ -52,11 +52,12 @@ return require('packer').startup(function(use)
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-cmdline",
   }
-
   use {
     'simrat39/rust-tools.nvim',
     requires = { 'mfussenegger/nvim-dap' },
   }
+  use { 'j-hui/fidget.nvim', config = function() require'fidget'.setup() end }
+  use { 'kkharji/lspsaga.nvim' }
 
   -- Sidebar
   use "sidebar-nvim/sidebar.nvim"
