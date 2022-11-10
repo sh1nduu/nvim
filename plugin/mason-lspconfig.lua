@@ -57,6 +57,14 @@ config.setup_handlers {
   function(server_name)
     lspconfig[server_name].setup(lsp_opts)
   end,
+  ["rust_analyzer"] = function ()
+    local has_rust_tools, rust_tools = pcall(require, "rust-tools")
+    if has_rust_tools then
+      rust_tools.setup({ server = lsp_opts })
+    else
+      lspconfig.rust_analyzer.setup({})
+    end
+  end,
   ["sumneko_lua"] = function()
     lspconfig.sumneko_lua.setup({
       settings = {

@@ -53,6 +53,11 @@ return require('packer').startup(function(use)
     "hrsh7th/cmp-cmdline",
   }
 
+  use {
+    'simrat39/rust-tools.nvim',
+    requires = { 'mfussenegger/nvim-dap' },
+  }
+
   -- Sidebar
   use "sidebar-nvim/sidebar.nvim"
 
