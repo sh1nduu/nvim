@@ -142,6 +142,19 @@ return require('packer').startup(function(use)
   use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
   use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
+  -- Transparent background
+  use {
+    'xiyaowong/nvim-transparent',
+    config = function ()
+      require('transparent').setup({
+        enable = true,
+        extra_groups = {
+          'all',
+        },
+      })
+     end,
+  }
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
