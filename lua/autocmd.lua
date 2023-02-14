@@ -57,3 +57,8 @@ autocmd({ "WinLeave" }, {
   command = "setlocal nocursorline",
 })
 
+-- filetype specific
+autocmd({ "Filetype" }, {
+  pattern = { "make" },
+  command = "setlocal noexpandtab",
+})
