@@ -17,4 +17,6 @@ keymap("n", "<Leader>v", ":e $MYVIMRC<Enter>", opts)
 keymap("n", "<Leader>r", ":source $MYVIMRC<Enter>", opts)
 -- Quit highlitght mode
 keymap("n", "<Esc><Esc>", ":<C-u>set nohlsearch<Enter>", opts)
-
+-- Move cursor on a soft-wrapped lines
+keymap("n", "j", "gj", opts)
+keymap("n", "k", "gk", opts)
