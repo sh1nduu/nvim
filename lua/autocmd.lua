@@ -14,12 +14,12 @@ autocmd("BufEnter", {
 })
 
 -- Restore cursor location when file is opened
-autocmd({ "BufReadPost" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.api.nvim_exec('silent! normal! g`"zv', false)
-	end,
-})
+-- autocmd({ "BufReadPost" }, {
+-- 	pattern = { "*" },
+-- 	callback = function()
+-- 		vim.api.nvim_exec('silent! normal! g`"zv', false)
+-- 	end,
+-- })
 
 -- Start terminal with insert mode
 autocmd({ "TermOpen" }, {

@@ -1,3 +1,7 @@
+local mason_ok, mason = pcall(require, "mason")
+if (not mason_ok) then return end
+mason.setup()
+
 local status, config = pcall(require, "mason-lspconfig")
 if (not status) then return end
 
@@ -50,35 +54,35 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 local lspconfig = require('lspconfig')
-local lsp_opts = {
-  on_attach = on_attach,
-  flags = lsp_flags,
-  capabilities = require('cmp_nvim_lsp').default_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-  )
-}
-
-config.setup_handlers {
-  function(server_name)
-    lspconfig[server_name].setup(lsp_opts)
-  end,
-  ["rust_analyzer"] = function ()
-    local has_rust_tools, rust_tools = pcall(require, "rust-tools")
-    if has_rust_tools then
-      rust_tools.setup({ server = lsp_opts })
-    else
-      lspconfig.rust_analyzer.setup({})
-    end
-  end,
-  ["sumneko_lua"] = function()
-    lspconfig.sumneko_lua.setup({
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
-        },
-      },
-    })
-  end,
-}
+-- local lsp_opts = {
+--   on_attach = on_attach,
+--   flags = lsp_flags,
+--   capabilities = require('cmp_nvim_lsp').default_capabilities(
+--     vim.lsp.protocol.make_client_capabilities()
+--   )
+-- }
+--
+-- config.setup_handlers {
+--   function(server_name)
+--     lspconfig[server_name].setup(lsp_opts)
+--   end,
+--   ["rust_analyzer"] = function ()
+--     local has_rust_tools, rust_tools = pcall(require, "rust-tools")
+--     if has_rust_tools then
+--       rust_tools.setup({ server = lsp_opts })
+--     else
+--       lspconfig.rust_analyzer.setup({})
+--     end
+--   end,
+--   ["sumneko_lua"] = function()
+--     lspconfig.sumneko_lua.setup({
+--       settings = {
+--         Lua = {
+--           diagnostics = {
+--             globals = { "vim" },
+--           },
+--         },
+--       },
+--     })
+--   end,
+-- }
