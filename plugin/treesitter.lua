@@ -18,6 +18,7 @@ ts.setup {
     "json",
     "lua",
     "markdown",
+    "markdown_inline",
     "rust",
     "sql",
     "toml",

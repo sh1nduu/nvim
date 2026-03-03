@@ -149,6 +149,9 @@ return require('packer').startup(function(use)
         enable = true,
         extra_groups = {
           'all',
+          'NeoTreeNormal',
+          'NeoTreeNormalNC',
+          'NeoTreeEndOfBuffer',
         },
       })
      end,
@@ -159,6 +162,16 @@ return require('packer').startup(function(use)
     "iamcco/markdown-preview.nvim",
     run = function()
       vim.fn["mkdp#util#install"]()
+    end,
+  }
+
+  -- Render markdown inline
+  use {
+    'MeanderingProgrammer/render-markdown.nvim',
+    after = { 'nvim-treesitter' },
+    requires = { 'kyazdani42/nvim-web-devicons' },
+    config = function()
+      require('render-markdown').setup({})
     end,
   }
 

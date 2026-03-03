@@ -20,6 +20,7 @@ local options = {
   -- cursorline = true,
   number = true,
   relativenumber = false,
+  scrolloff = 8,
   wrap = true,
   breakindent = true,
   background = "dark",
