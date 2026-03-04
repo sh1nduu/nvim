@@ -24,7 +24,7 @@ local options = {
   wrap = true,
   breakindent = true,
   background = "dark",
-  mouse = "",
+  mouse = "a",
   guifont = "Hack"
 }
 
