@@ -13,9 +13,14 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   -- Colorscheme (load immediately)
   {
-    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
+    name = "catppuccin",
     lazy = false,
     priority = 1000,
+    config = function()
+      require("catppuccin").setup()
+      vim.cmd("colorscheme catppuccin")
+    end,
   },
 
   -- Statusline (load immediately for UI)
@@ -136,13 +141,30 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      ensure_installed = {
+    config = function()
+      require("nvim-treesitter").setup()
+
+      -- Install parsers if missing
+      local langs = {
         "css", "go", "html", "javascript", "json", "lua",
-        "markdown", "markdown_inline", "rust", "sql", "toml",
-        "tsx", "typescript",
-      },
-    },
+        "markdown", "markdown_inline", "python", "rust", "sql",
+        "toml", "tsx", "typescript",
+      }
+      local parser_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "site", "parser")
+      for _, lang in ipairs(langs) do
+        if vim.fn.filereadable(vim.fs.joinpath(parser_dir, lang .. ".so")) == 0 then
+          vim.cmd("TSInstall " .. lang)
+        end
+      end
+
+      -- Enable treesitter highlighting for current and future buffers
+      vim.api.nvim_create_autocmd("FileType", {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
+      pcall(vim.treesitter.start)
+    end,
   },
 
   -- Mason (lazy, only when explicitly needed)
