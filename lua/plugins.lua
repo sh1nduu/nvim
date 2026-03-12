@@ -368,7 +368,16 @@ require("lazy").setup({
       vim.g.neo_tree_remove_legacy_commands = 1
     end,
     config = function()
-      require("neo-tree").setup({ window = { width = 30 } })
+      require("neo-tree").setup({
+        window = { width = 30 },
+        filesystem = {
+          filtered_items = {
+            visible = true,
+            hide_dotfiles = false,
+            hide_gitignored = false,
+          },
+        },
+      })
       vim.keymap.set("n", "<Leader>ft", ":Neotree filesystem reveal<Enter>", { silent = true, noremap = true })
       vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE", ctermbg = "NONE" })
       vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "NONE", ctermbg = "NONE" })
