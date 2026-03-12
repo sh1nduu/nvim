@@ -25,13 +25,16 @@ Leader = `Space`
 | `<Esc>` (terminal) | ターミナルからノーマルモードに戻る |
 | `<Esc><Esc>` | 検索ハイライトを消す |
 | `j` / `k` | 折り返し行でも見た目通りに移動 |
+| `Cmd+c` (visual) | 選択範囲をクリップボードにコピー |
 
 ## Telescope (検索・ファイル操作)
 
 | Key | Action |
 |---|---|
 | `<Leader>ff` | ファイル検索 (find_files) |
+| `<Leader>fF` | 全ファイル検索 (.env 等 gitignore 含む) |
 | `<Leader>fg` | テキスト検索 (live_grep) |
+| `<Leader>fG` | 全ファイル grep (gitignore 含む) |
 | `<Leader>fb` | ファイルブラウザ (カレントディレクトリ) |
 | `<Leader>fr` | 最近使ったファイル (frecency) |
 | `q` / `<Esc><Esc>` | Telescope を閉じる (Normal mode) |

@@ -63,7 +63,9 @@ require("lazy").setup({
     cmd = "Telescope",
     keys = {
       { "<Leader>ff", desc = "Find files" },
+      { "<Leader>fF", desc = "Find all files (incl. gitignored)" },
       { "<Leader>fg", desc = "Live grep" },
+      { "<Leader>fG", desc = "Live grep all (incl. gitignored)" },
       { "<Leader>fb", desc = "File browser" },
       { "<Leader>fr", desc = "Frecency" },
     },
@@ -117,7 +119,13 @@ require("lazy").setup({
       end
 
       vim.keymap.set("n", "<Leader>ff", builtin.find_files, opts)
+      vim.keymap.set("n", "<Leader>fF", function()
+        builtin.find_files({ no_ignore = true, hidden = true })
+      end, opts)
       vim.keymap.set("n", "<Leader>fg", builtin.live_grep, opts)
+      vim.keymap.set("n", "<Leader>fG", function()
+        builtin.live_grep({ additional_args = { "--no-ignore", "--hidden" } })
+      end, opts)
       vim.keymap.set("n", "<Leader>fb", function()
         telescope.extensions.file_browser.file_browser {
           path = "%:p:h",
